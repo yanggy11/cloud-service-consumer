@@ -5,7 +5,7 @@
             <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{1.}:%L - %msg%n}{%throwable{short.fileName}}{FATAL=white,ERROR=red,
           WARN=blue, INFO=black, DEBUG=green, TRACE=blue}"/>
         </Console>
-        <RollingFile name="error" fileName="D:/logs/consumer/app_error.log"
+        <RollingFile name="error" fileName="/Users/derrick.yang/logs/consumer/app_error.log"
                      filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <Filters>
                 <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -14,7 +14,7 @@
             <SizeBasedTriggeringPolicy size="50MB"/>
             <DefaultRolloverStrategy max="20"/>
         </RollingFile>
-        <RollingRandomAccessFile name="info_appender" immediateFlush="true" fileName="D:/logs/consumer/app_info.log" filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingRandomAccessFile name="info_appender" immediateFlush="true" fileName="/Users/derrick.yang/logs/consumer/app_info.log" filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%5p [%t] %d{yyyy-MM-dd HH:mm:ss} (%F:%L) %m%n</pattern>
             </PatternLayout>
