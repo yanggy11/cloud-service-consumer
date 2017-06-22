@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-@EnableCircuitBreaker
+//@EnableCircuitBreaker
 @EnableHystrixDashboard
 public class ServiceConsumer {
     @Bean
