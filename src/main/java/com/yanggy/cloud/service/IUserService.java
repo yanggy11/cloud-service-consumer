@@ -2,6 +2,7 @@ package com.yanggy.cloud.service;
 
 import com.yanggy.cloud.entity.User;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,4 +13,5 @@ public interface IUserService {
     User getUserById(long id);
     Map login(User user);
     Map register( User user);
+    List<User> getUserList();
 }

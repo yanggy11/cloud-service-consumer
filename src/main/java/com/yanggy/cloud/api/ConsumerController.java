@@ -44,4 +44,9 @@ public class ConsumerController {
         logger.info("api----register:" + new JSONObject(user).toString());
         return userService.register(user);
     }
+
+    @RequestMapping(value="/userList", method = RequestMethod.POST)
+    public Object getUserList() {
+        return userService.getUserList();
+    }
 }

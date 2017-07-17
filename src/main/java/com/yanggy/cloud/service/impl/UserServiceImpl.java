@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,6 +48,11 @@ public class UserServiceImpl implements IUserService{
         }
 
         return map;
+    }
+
+    @Override
+    public List<User> getUserList() {
+        return restTemplate.postForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/userList",null,List.class).getBody();
     }
 
     public User addGetUserByIdFallback(long id) {
