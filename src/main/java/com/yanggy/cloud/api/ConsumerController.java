@@ -19,6 +19,7 @@ import java.util.Map;
  */
 
 @RestController
+@RequestMapping(value="/api/user")
 public class ConsumerController {
     private static Logger logger = LogManager.getLogger(ConsumerController.class);
     @Resource
