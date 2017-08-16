@@ -22,27 +22,28 @@ public class UserServiceImpl implements IUserService{
     @Resource
     private RestTemplate restTemplate;
 
-//    @HystrixCommand(fallbackMethod = "addGetUserByIdFallback")
+    @HystrixCommand(fallbackMethod = "addGetUserByIdFallback")
     @Override
     public User getUserById(long id) {
         return restTemplate.getForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/getUserById?id=" + id, User.class).
                 getBody();
     }
 
-//    @HystrixCommand(fallbackMethod = "mapFallBack")
+    @HystrixCommand(fallbackMethod = "mapFallBack")
     @Override
     public Map login(User user) {
         return restTemplate.postForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/login",user,Map.class).
                 getBody();
     }
 
-//    @HystrixCommand(fallbackMethod = "mapFallBack")
+    @HystrixCommand(fallbackMethod = "mapFallBack")
     @Override
     public Map register(User user) {
         Map map = null;
         try {
             map = restTemplate.postForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/register", user, Map.class).
                     getBody();
+            int i = 1 / 0;
         }catch (Exception e) {
             e.printStackTrace();
         }
