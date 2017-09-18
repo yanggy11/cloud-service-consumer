@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: cloud-service-consumer
+  security:
+    enabled: false
 eureka:
   client:
     serviceUrl:
@@ -10,4 +12,4 @@ eureka:
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
