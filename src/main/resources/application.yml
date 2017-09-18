@@ -6,7 +6,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.25.128:1988/eureka/,http://192.168.25.128:1987/eureka/
+      defaultZone: http://192.168.25.128:1988/eureka/
 
 feign:
   hystrix:
