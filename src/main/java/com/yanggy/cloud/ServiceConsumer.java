@@ -4,16 +4,12 @@ import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 /**
  * Created by yangguiyun on 2017/6/12.
@@ -26,8 +22,6 @@ import org.springframework.web.filter.CorsFilter;
 public class ServiceConsumer {
     @Bean
     public IRule ribbonRule() {
-//        return new RandomRule();
-//        return new BestAvailableRule();
         return new RandomRule();
     }
 

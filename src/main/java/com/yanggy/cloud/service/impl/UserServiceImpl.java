@@ -40,13 +40,8 @@ public class UserServiceImpl implements IUserService{
     @Override
     public Map register(User user) {
         Map map = null;
-        try {
             map = restTemplate.postForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/register", user, Map.class).
                     getBody();
-            int i = 1 / 0;
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return map;
     }
