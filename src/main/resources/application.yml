@@ -8,8 +8,4 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://192.168.25.128:1988/eureka/
-
-feign:
-  hystrix:
-    enabled: false
+      defaultZone: http://localhost:1988/eureka/
