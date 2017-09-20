@@ -39,11 +39,8 @@ public class UserServiceImpl implements IUserService{
     @HystrixCommand(fallbackMethod = "mapFallBack")
     @Override
     public Map register(User user) {
-        Map map = null;
-            map = restTemplate.postForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/register", user, Map.class).
-                    getBody();
-
-        return map;
+        return restTemplate.postForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/api/user/register", user, Map.class).
+                getBody();
     }
 
     @Override
