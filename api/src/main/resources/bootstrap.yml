@@ -1,0 +1,34 @@
+server:
+  port: 1986
+spring:
+  application:
+    name: cloud-service-consumer
+  cloud:
+    config:
+  #      uri: http://192.168.1.100:8887 # config server
+      uri: http://192.168.25.128:8887 # config server
+      name: cloud-config # 要读取的配置文件application属性
+      profile: ${config.profile:test} # default config profile
+      username: yanggy11
+      password: ygy591932230
+      enabled: true
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: http://192.168.1.100:8761/eureka/
+      defaultZone: http://192.168.25.128:8761/eureka/
+# set hystrix timeout to 10 seconds in order to avoid the failure of requests in short time
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+security:
+  basic:
+    enabled: false
+management:
+#  context-path: /${spring.application.name}
+  security:
+    enabled: false

@@ -1,6 +1,8 @@
 package com.yanggy.cloud.api;
 
+import com.yanggy.cloud.service.UserService;
 import com.yanggy.cloud.utils.Constants;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +18,17 @@ import javax.annotation.Resource;
 @RequestMapping("/test/*")
 public class TestController {
     @Resource
+    private UserService userService;
+    @Resource
     private RestTemplate restTemplate;
 
     @RequestMapping(value = "/test",  method = RequestMethod.GET)
     public String test() {
         return restTemplate.getForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/test",String.class).getBody();
+    }
+
+    @PostMapping(value="/users")
+    public Object getUsers() {
+        return userService.getUser();
     }
 }
