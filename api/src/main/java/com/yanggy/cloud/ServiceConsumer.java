@@ -15,6 +15,13 @@ import org.springframework.web.client.RestTemplate;
  * Created by yangguiyun on 2017/6/12.
  */
 
+/**
+ * ribbon 使用
+ * 1.加入依赖 ribbon
+ * 2.定义bean RestTemplate ,加入@LoadBalanced注解启用负载均衡
+ * 3.定义负载均衡方式：
+ */
+
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableCircuitBreaker
