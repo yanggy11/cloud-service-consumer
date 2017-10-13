@@ -6,7 +6,7 @@ spring:
   cloud:
     config:
   #      uri: http://192.168.1.100:8887 # config server
-      uri: http://192.168.25.128:8887 # config server
+      uri: http://192.168.25.128:8761 # config server
       name: cloud-config # 要读取的配置文件application属性
       profile: ${config.profile:test} # default config profile
       username: yanggy11
