@@ -26,9 +26,4 @@ public class TestController {
     public String test() {
         return restTemplate.getForEntity(Constants.CLOUD_SERVICE_PROVIDER + "/test",String.class).getBody();
     }
-
-    @PostMapping(value="/users")
-    public Object getUsers() {
-        return userService.getUser();
-    }
 }
