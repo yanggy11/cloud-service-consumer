@@ -10,6 +10,7 @@
 ```
 2. 加入@LoadBalanced注解
   @Bean //定义负载均衡方式，这里使用自带的随机方式，也可以自定义负载均衡方式
+  ```
     public IRule getRule() {
         return new RandomRule();
     }
@@ -19,3 +20,4 @@
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+```
