@@ -30,6 +30,14 @@
 2017-12-12 17:26:00.555  WARN 6384 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/cloud-config/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
 2017-12-12 17:26:00.560  INFO 6384 --- [           main] com.yanggy.ServiceUser                   : No active profile set, falling back to default profiles: default
 ```
+
+引入maven依赖
+```
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+```
 application.yml中添加配置中心配置属性，
 ```
 spring:
