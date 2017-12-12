@@ -21,3 +21,26 @@
         return new RestTemplate();
     }
 ```
+
+3.引用配置中心
+首先将配置文件application.yml更名为bootstrap.yml，原因是当启动配置中心的时候，会默认从bootstrap.yml文件中读取配置中心的属性，如果找不到，则会默认从localhost:8888所表示的配置中心中读取配置文件，会出现如下的错误：
+```
+2017-12-12 17:25:59.406  INFO 6384 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://localhost:8888
+2017-12-12 17:26:00.555  WARN 6384 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/cloud-config/test": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+2017-12-12 17:26:00.560  INFO 6384 --- [           main] com.yanggy.ServiceUser                   : No active profile set, falling back to default profiles: default
+```
+application.yml中添加配置中心配置属性，
+```
+spring:
+  cloud:
+      config:
+        name: cloud-config # 要读取的配置文件application属性
+        profile: ${config.profile:test} # default config profile
+        username: yanggy11
+        password: ygy591932230
+        discovery:
+          enabled: true
+          service-id: cloud-config
+```
+
+
