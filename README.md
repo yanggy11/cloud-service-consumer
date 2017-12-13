@@ -44,7 +44,7 @@ spring:
   cloud:
       config:
         name: cloud-config # 要读取的配置文件application属性
-        profile: ${config.profile:test} # default config profile
+        profile: ${config.profile:dd} # default config profile
         username: xxxxxx #github账户
         password: xxxxxx
         discovery:
@@ -52,4 +52,82 @@ spring:
           service-id: cloud-config
 ```
 
+#从配置中心加载数据库信息
+
+定义接收从配置中心获取到的数据库属性类
+
+```
+@Data
+@Component
+@ConfigurationProperties(prefix = DataSourceProperties.PREFIX, ignoreUnknownFields = false)
+public class DataSourceProperties {
+    public final static String PREFIX="jdbc";
+
+    private String type;
+    private String driver;
+    private String url;
+    private String username;
+    private String password;
+    private int initialSize;
+    private int minIdle;
+    private int maxActive;
+    private int maxWait;
+    private int timeBetweenEvictionRunsMillis;
+    private int minEvictableIdleTimeMillis;
+
+    public DataSourceProperties() {
+        super();
+    }
+}
+```
+
+定义datasource bean
+```
+@Configuration
+@MapperScan(DataSourceConfiguration.MAPPER_PACKAGE_PATH)
+@EnableConfigurationProperties(DataSourceProperties.class)
+@EnableTransactionManagement
+public class DataSourceConfiguration {
+    private final static String MAPPER_LOCATIONS = "sql-mapper/*.xml";
+    private final static String ENTITY_PACKAGE_PATH = "com.yanggy.model";
+    protected final static String MAPPER_PACKAGE_PATH = "com.yanggy.mapper";
+    @Autowired
+    private  DataSourceProperties dataSourceProperties;
+    private DruidDataSource datasource = null;
+
+    @Bean(destroyMethod = "close")
+    public DataSource dataSource(){
+        datasource = new DruidDataSource();
+        datasource.setUrl(dataSourceProperties.getUrl());
+        datasource.setDbType(dataSourceProperties.getType());
+        datasource.setDriverClassName(dataSourceProperties.getDriver());
+        datasource.setUsername(dataSourceProperties.getUsername());
+        datasource.setPassword(dataSourceProperties.getPassword());
+        return datasource;
+    }
+
+    @PreDestroy
+    public void close() {
+        if(datasource != null){
+            datasource.close();
+        }
+    }
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource());
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources(MAPPER_LOCATIONS));
+        sqlSessionFactoryBean.setTypeAliasesPackage(ENTITY_PACKAGE_PATH);
+        return sqlSessionFactoryBean.getObject();
+    }
+            
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+}
+```
+通过以上步骤，数据库配置完毕。
 
