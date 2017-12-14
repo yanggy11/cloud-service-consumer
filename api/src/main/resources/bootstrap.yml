@@ -14,6 +14,11 @@ spring:
       discovery:
         enabled: true
         service-id: cloud-config
+  rabbitmq:
+    host: 192.168.1.100
+    port: 5672
+    username: guest
+    password: derrick
 eureka:
   client:
     serviceUrl:
