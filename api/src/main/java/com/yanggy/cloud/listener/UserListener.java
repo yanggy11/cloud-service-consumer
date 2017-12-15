@@ -13,8 +13,8 @@ import java.io.IOException;
  * Created by derrick.yang on 11/3/17.
  */
 
-@Component
-@RabbitListener(queues = "hello")
+//@Component
+//@RabbitListener(queues = "hello")
 public class UserListener {
     private static ObjectMapper objectMapper;
 
