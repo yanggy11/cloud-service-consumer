@@ -13,23 +13,14 @@ import java.io.IOException;
  * Created by derrick.yang on 11/3/17.
  */
 
-//@Component
-//@RabbitListener(queues = "hello")
+@Component
 public class UserListener {
     private static ObjectMapper objectMapper;
 
+    @RabbitListener(queues = "hello", containerFactory = "rabbitListenerContainerFactory")
     @RabbitHandler
-    public void userList(Object message) {
-        Message msg = (Message)message;
-        String json = new String(msg.getBody());
-        ObjectMapper objectMapper = this.getObjectMapper();
-        try {
-            Page page = objectMapper.readValue(json, Page.class);
-
-            System.out.println(page.getData());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void userList(Page message) {
+        System.out.println(message);
     }
 
     private static class SingleObjectMapper {
