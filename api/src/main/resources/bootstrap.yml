@@ -5,15 +5,14 @@ spring:
     name: cloud-service-consumer
   cloud:
     config:
-#      uri: http://192.168.1.100:8887 # config server
-      uri: http://localhost:8887 # config server
+      uri: http://39.107.97.132:8887 # config server
       name: cloud-config # 要读取的配置文件application属性
       profile: ${config.profile:test} # default config profile
       username: yanggy11
       password: ygy591932230
-      discovery:
-        enabled: true
-        service-id: cloud-config
+#      discovery:
+#        enabled: true
+#        service-id: cloud-config
     bus:
       trace:
         enabled: true
@@ -31,7 +30,7 @@ eureka:
   client:
     serviceUrl:
 #      defaultZone: http://192.168.1.100:8761/eureka/
-      defaultZone: http://localhost:8000/eureka/
+      defaultZone: http://39.107.97.132:8000/eureka/
 # set hystrix timeout to 10 seconds in order to avoid the failure of requests in short time
 hystrix:
   command:
@@ -44,6 +43,5 @@ security:
   basic:
     enabled: false
 management:
-#  context-path: /${spring.application.name}
   security:
     enabled: false
