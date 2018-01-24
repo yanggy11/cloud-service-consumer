@@ -28,6 +28,9 @@ eureka:
     serviceUrl:
 #      defaultZone: http://192.168.1.100:8761/eureka/
       defaultZone: http://39.107.97.132:8000/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
 # set hystrix timeout to 10 seconds in order to avoid the failure of requests in short time
 hystrix:
   command:
