@@ -13,6 +13,9 @@ spring:
 #      discovery:
 #        enabled: true
 #        service-id: cloud-config
+    bus:
+      trace:
+        enabled: true
   sleuth:
     sampler:
       percentage: 1.0
