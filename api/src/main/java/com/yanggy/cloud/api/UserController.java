@@ -1,7 +1,8 @@
 package com.yanggy.cloud.api;
 
 import com.yanggy.cloud.dto.ResponseEntity;
-import com.yanggy.cloud.param.UserParam;
+import com.yanggy.cloud.UserParam;
+import com.yanggy.cloud.service.UserContract;
 import com.yanggy.cloud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +27,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserContract userContract;
     @PostMapping(value = "list")
-    public ResponseEntity<?> getUserList(@RequestBody UserParam userParam) {
+    public Object getUserList(@RequestBody UserParam userParam) {
 
-        return restTemplate.postForEntity("http://CLOUD-SERVICE-PROVIDER//api/user/userList", userParam, ResponseEntity.class).getBody();
+        return userContract.userList(userParam);// restTemplate.postForEntity("http://CLOUD-SERVICE-PROVIDER//api/user/userList", userParam, ResponseEntity.class).getBody();
 
     }
 

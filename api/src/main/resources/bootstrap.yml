@@ -16,6 +16,8 @@ spring:
     bus:
       trace:
         enabled: true
+    stream:
+      default-binder: rabbit
   sleuth:
     sampler:
       percentage: 1.0
