@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.PreDestroy;
 import javax.sql.DataSource;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by yangguiyun on 2017/9/21.

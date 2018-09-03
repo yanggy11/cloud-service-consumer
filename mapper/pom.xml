@@ -16,6 +16,17 @@
             <groupId>com.yanggy.cloud</groupId>
             <artifactId>cloud-entity</artifactId>
             <version>1.0-SNAPSHOT</version>
+
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-redis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
